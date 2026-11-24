@@ -1,0 +1,13 @@
+*.iml
+.gradle/
+build/
+local.properties
+.idea/
+*.nds
+*.sav
+__pycache__/
+build_pc/
+*.psf
+*.minipsf
+*.psflib
+*.wav
