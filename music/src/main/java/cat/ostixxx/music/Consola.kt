@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import cat.gbdsmixxx.App
@@ -89,9 +90,23 @@ fun FiltreConsola(albums: List<Emissora>, sel: String, canvia: (String) -> Unit)
     val compte = androidx.compose.runtime.remember(albums) { albums.groupingBy { consolaDe(it) }.eachCount() }
     val hi = ORDRE_CONSOLES.filter { (compte[it] ?: 0) > 0 }
     if (hi.size < 2) return
-    LazyRow(contentPadding = PaddingValues(horizontal = 16.dp), horizontalArrangement = Arrangement.spacedBy(8.dp), modifier = Modifier.padding(top = 10.dp)) {
-        item(key = "totes") { Xip(t("Totes"), sel.isEmpty()) { canvia("") } }
-        items(hi, key = { it }) { c -> Xip(nomConsola(c) + " " + (compte[c] ?: 0), sel == c) { canvia(c) } }
+    val noms = listOf(t("Totes")) + hi.map { nomConsola(it) }
+    Pivot(noms, if (sel.isEmpty()) 0 else hi.indexOf(sel) + 1, gran = false, mod = Modifier.padding(top = 6.dp)) { i -> canvia(if (i == 0) "" else hi[i - 1]) }
+}
+
+/**
+ * Filtre estil Windows Phone (pivot): les opcions són paraules en minúscula, sense caixes; la triada amb el color del text i la resta apagades.
+ * `gran` = la mida de les pestanyes; si no, la dels filtres secundaris.
+ */
+@Composable
+fun Pivot(noms: List<String>, sel: Int, gran: Boolean = true, mod: Modifier = Modifier, toc: (Int) -> Unit) {
+    LazyRow(mod, contentPadding = PaddingValues(horizontal = 20.dp), horizontalArrangement = Arrangement.spacedBy(if (gran) 22.dp else 16.dp),
+        verticalAlignment = androidx.compose.ui.Alignment.Bottom) {
+        items(noms.size, key = { it }) { i ->
+            val actiu = i == sel
+            val color by androidx.compose.animation.animateColorAsState(if (actiu) M.text else M.tenu.copy(alpha = 0.5f), androidx.compose.animation.core.tween(220), label = "pivot")
+            Tx(noms[i].lowercase(), if (gran) Tipus.pivot else Tipus.pivotPetit, color, Modifier.premsable(0.96f, vibra = false) { toc(i) }.padding(vertical = 2.dp))
+        }
     }
 }
 

@@ -94,7 +94,16 @@ object M {
 
 /** Tipografia: la del sistema (Roboto / la del mòbil), gran i amb pes; els títols grans una mica més junts. */
 object Tipus {
-    private val f = FontFamily.Default
+    // Work Sans (SIL OFL 1.1, fitxer OFL-WorkSans.txt)
+    private val f = FontFamily(
+        androidx.compose.ui.text.font.Font(R.font.worksans_light, FontWeight.Light),
+        androidx.compose.ui.text.font.Font(R.font.worksans_regular, FontWeight.Normal),
+        androidx.compose.ui.text.font.Font(R.font.worksans_medium, FontWeight.Medium),
+        androidx.compose.ui.text.font.Font(R.font.worksans_semibold, FontWeight.SemiBold),
+        androidx.compose.ui.text.font.Font(R.font.worksans_bold, FontWeight.Bold))
+    /** Filtres estil Windows Phone (pivot): paraules grans i primes en minúscula. */
+    val pivot = TextStyle(fontFamily = f, fontSize = 30.sp, lineHeight = 38.sp, fontWeight = FontWeight.Light, letterSpacing = (-0.5).sp)
+    val pivotPetit = TextStyle(fontFamily = f, fontSize = 20.sp, lineHeight = 26.sp, fontWeight = FontWeight.Light, letterSpacing = (-0.2).sp)
     val display = TextStyle(fontFamily = f, fontSize = 34.sp, lineHeight = 40.sp, fontWeight = FontWeight.Bold, letterSpacing = (-0.6).sp)
     val titol = TextStyle(fontFamily = f, fontSize = 26.sp, lineHeight = 32.sp, fontWeight = FontWeight.Bold, letterSpacing = (-0.4).sp)
     val seccio = TextStyle(fontFamily = f, fontSize = 21.sp, lineHeight = 26.sp, fontWeight = FontWeight.Bold, letterSpacing = (-0.2).sp)

@@ -90,15 +90,11 @@ fun BibliotecaPant(b: Biblioteca, triaFitxers: () -> Unit, triaCarpeta: () -> Un
         }
         item(key = "vistes", contentType = "xips") {
             val noms = listOf(t("Àlbums"), t("Llistes"))
-            LazyRow(contentPadding = PaddingValues(horizontal = 16.dp), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-                itemsIndexed(noms, key = { i, _ -> i }) { i, n -> Xip(n, vista == i) { vista = i } }
-            }
+            Pivot(noms, vista) { vista = it }
         }
         item(key = "accions", contentType = "xips") {
             LazyRow(Modifier.padding(top = 10.dp), contentPadding = PaddingValues(horizontal = 16.dp), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
                 item(key = "nova") { Xip(t("Nova llista"), nova, CamiIcones.LLISTA_AFEGEIX) { nova = !nova } }
-                item(key = "fitxers") { Xip(t("Importa fitxers"), false, CamiIcones.FITXER) { triaFitxers() } }
-                item(key = "carpeta") { Xip(t("Importa carpeta"), false, CamiIcones.CARPETA) { triaCarpeta() } }
             }
         }
         if (nova) item(key = "nova_llista", contentType = "camp") {

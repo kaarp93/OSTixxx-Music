@@ -44,7 +44,7 @@ Aproximadament la meitat dels jocs de les plataformes suportades funcionen, amb 
 - Altres dispositius i altres versions d'Android.
 
 ## Codi obert i crèdits
-Llicència **MIT** (fitxer `LICENSE`). Els motors de so s'han escrit a partir de projectes oberts de desassemblatge i reimplementació, cadascun amb la seva llicència. Les dades opcionals (portades i gèneres) vénen de libretro (CC BY-SA 4.0). Els gràfics del mode concert (`concert/herois.png`, `concert/enemics.png`) són d'ImmoHub, de Kaarp93, llicència GPL.
+Llicència **MIT** (fitxer `LICENSE`). Els motors de so s'han escrit a partir de projectes oberts de desassemblatge i reimplementació, cadascun amb la seva llicència. Les dades opcionals (portades i gèneres) vénen de libretro (CC BY-SA 4.0). La font de l'app és Work Sans (SIL Open Font License 1.1, fitxer `OFL-WorkSans.txt`). Els gràfics del mode concert (`concert/herois.png`, `concert/enemics.png`) són d'ImmoHub, de Kaarp93, llicència GPL.
 
 ## Contribuir
 Els comentaris, els errors i les ROM que no sonen són benvinguts.

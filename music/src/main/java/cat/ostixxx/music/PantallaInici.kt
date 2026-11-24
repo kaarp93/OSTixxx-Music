@@ -139,7 +139,6 @@ fun BuitImporta(triaFitxers: () -> Unit, triaCarpeta: () -> Unit) {
     Column(Modifier.fillMaxSize().padding(32.dp), verticalArrangement = Arrangement.spacedBy(16.dp, Alignment.CenterVertically), horizontalAlignment = Alignment.CenterHorizontally) {
         Box(Modifier.size(96.dp).clip(RoundedCornerShape(Formes.enorme)).background(M.suau), contentAlignment = Alignment.Center) { Icona(CamiIcones.NOTA, M.sobreSuau, 48.dp) }
         Tx(t("Importa ROMs o fitxers de música per començar"), Tipus.gran, M.text, linies = 3)
-        BotoPle(t("Importa fitxers"), CamiIcones.FITXER, Modifier.fillMaxWidth()) { triaFitxers() }
-        BotoTonal(t("Importa carpeta"), CamiIcones.CARPETA, Modifier.fillMaxWidth()) { triaCarpeta() }
+        Tx(t("Es fa des d'Ajustos."), Tipus.cos, M.tenu, linies = 2)
     }
 }

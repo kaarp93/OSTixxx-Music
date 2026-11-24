@@ -3,7 +3,7 @@ package cat.ostixxx.music
 /** Textos propis d'OSTixxx Music: [català (clau), anglès, castellà]. */
 val TEXTOS_MUSIC = listOf(
     arrayOf("Inici", "Home", "Inicio"), arrayOf("Biblioteca", "Library", "Biblioteca"), arrayOf("Àlbums", "Albums", "Álbumes"), arrayOf("Llistes", "Playlists", "Listas"),
-    arrayOf("Nova llista", "New playlist", "Nueva lista"), arrayOf("Importa fitxers", "Import files", "Importar archivos"), arrayOf("Importa carpeta", "Import folder", "Importar carpeta"),
+    arrayOf("Nova llista", "New playlist", "Nueva lista"), arrayOf("Importa fitxers", "Import files", "Importar archivos"), arrayOf("Importa carpeta", "Import folder", "Importar carpeta"), arrayOf("Es fa des d'Ajustos.", "You can do it from Settings.", "Se hace desde Ajustes."),
     arrayOf("Bon dia", "Good morning", "Buenos días"), arrayOf("Bona tarda", "Good afternoon", "Buenas tardes"), arrayOf("Bona nit", "Good evening", "Buenas noches"),
     arrayOf("Els teus àlbums", "Your albums", "Tus álbumes"), arrayOf("Les teves llistes", "Your playlists", "Tus listas"),
     arrayOf("Importa ROMs o fitxers de música per començar", "Import ROMs or music files to get started", "Importa ROMs o archivos de música para empezar"),
