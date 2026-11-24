@@ -58,6 +58,20 @@ object ProvaCompatApp {
     private fun sis(c: String) = if (c == "NES") SistemaDriver.NES else SistemaDriver.GB
     /** Màxim que es llegeix d'un fitxer triat (una ROM de GB o NES és molt més petita). */
     private const val MAX_BYTES = 16 shl 20
+    /** Una ROM de SNES: capçalera interna coherent (suma de comprovació i el seu complement) a $7FC0 o $FFC0, amb o sense els 512 bytes de capçalera de les còpies. */
+    fun esSnes(b: ByteArray): Boolean {
+        val d = if (b.size % 1024 == 512) b.copyOfRange(512, b.size) else b
+        fun w(o: Int) = (d[o].toInt() and 255) or ((d[o + 1].toInt() and 255) shl 8)
+        fun ok(o: Int) = o + 0x30 <= d.size && (w(o + 0x1C) xor w(o + 0x1E)) == 0xFFFF
+        return d.size >= 0x8000 && (ok(0x7FC0) || ok(0xFFC0))
+    }
+    /** Si el fitxer és una ROM de SNES, l'analitza (executant-la amb la CPU principal) i torna l'informe; si no, null. Dins d'un fil de fons. */
+    fun analitzaSnes(ctx: Context, uri: android.net.Uri): String? {
+        val b = llegeix(ctx, uri) ?: return null
+        if (!esSnes(b)) return null
+        inicia()
+        return cat.gbdsmixxx.AnalitzadorSnes.analitza(RomsMusica.nomFitxer(ctx, uri) ?: "ROM", b, 1800)
+    }
     private fun llegeix(ctx: Context, uri: android.net.Uri): ByteArray? = try {
         ctx.contentResolver.openInputStream(uri)?.use { ins ->
             val out = java.io.ByteArrayOutputStream(); val buf = ByteArray(65536); var n = 0
@@ -167,6 +181,8 @@ fun BlocProvaCompat(ctx: Context) {
                 Handler(Looper.getMainLooper()).post { android.widget.Toast.makeText(ctx, t("Disc de PlayStation: buscant-hi la música (XA i CD àudio)..."), android.widget.Toast.LENGTH_LONG).show(); App.importa(ctx, listOf(u)) }
                 return@Thread
             }
+            val infSnes = try { ProvaCompatApp.analitzaSnes(ctx, u) } catch (x: Throwable) { t("La prova ha fallat") + " (" + (x.message ?: x.javaClass.simpleName) + ")" }
+            if (infSnes != null) { Handler(Looper.getMainLooper()).post { mostraInforme(ctx, infSnes) }; return@Thread }
             val (r, motiu) = try { ProvaCompatApp.miraFitxer(ctx, u) } catch (x: Throwable) { null to t("No s'ha pogut llegir el fitxer") }
             Handler(Looper.getMainLooper()).post {
                 if (r == null) android.widget.Toast.makeText(ctx, motiu, android.widget.Toast.LENGTH_LONG).show()
@@ -186,6 +202,15 @@ fun BlocProvaCompat(ctx: Context) {
         if (ProvaCompat.ocupat) android.widget.Toast.makeText(ctx, enCurs, android.widget.Toast.LENGTH_LONG).show()
         else tria.launch(arrayOf("*/*"))
     }
+}
+
+/** Informe de l'anàlisi d'una ROM de SNES: es pot llegir i compartir. */
+private fun mostraInforme(ctx: Context, text: String) {
+    val tv = android.widget.TextView(ctx).apply { this.text = text; textSize = 11f; typeface = android.graphics.Typeface.MONOSPACE; setPadding(32, 16, 32, 16); setTextIsSelectable(true) }
+    val sv = android.widget.ScrollView(ctx).apply { addView(tv) }
+    android.app.AlertDialog.Builder(ctx).setTitle(t("Anàlisi de SNES")).setView(sv)
+        .setPositiveButton(t("Comparteix")) { _, _ -> ctx.startActivity(android.content.Intent.createChooser(android.content.Intent(android.content.Intent.ACTION_SEND).apply { type = "text/plain"; putExtra(android.content.Intent.EXTRA_TEXT, text) }, t("Comparteix"))) }
+        .setNegativeButton(t("Tanca"), null).show()
 }
 
 /** Avís abans d'engegar: experimental, pot fallar i gasta molts recursos. */
@@ -231,6 +256,8 @@ val TEXTOS_PROVA_COMPAT = listOf(
         "It is EXPERIMENTAL and may FAIL. It uses A LOT OF RESOURCES: CPU, battery and memory, for minutes (up to 10). You can cancel it at any time in Settings > Library. If it finds a driver, the album appears in the library as \"Auto (not validated)\".",
         "Es EXPERIMENTAL y puede FALLAR. Gasta MUCHOS RECURSOS: CPU, batería y memoria, durante minutos (hasta 10). Puedes cancelarla cuando quieras en Ajustes > Biblioteca. Si encuentra un driver, el álbum sale en la biblioteca como «Auto (sin validar)»."),
     arrayOf("Continua", "Continue", "Continuar"),
+    arrayOf("Anàlisi de SNES", "SNES analysis", "Análisis de SNES"),
+    arrayOf("Tanca", "Close", "Cerrar"),
     arrayOf("Driver candidat trobat", "Candidate driver found", "Driver candidato encontrado"),
     arrayOf("Auto (sense validar)", "Auto (not validated)", "Auto (sin validar)"),
     arrayOf("No s'ha pogut desar el candidat", "The candidate could not be saved", "No se ha podido guardar el candidato"),
