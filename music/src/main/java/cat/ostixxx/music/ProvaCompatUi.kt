@@ -174,9 +174,6 @@ fun BlocProvaCompat(ctx: Context) {
             }
         }.also { it.isDaemon = true }.start()
     }
-    Tx(t("Prova compatibilitat"), Tipus.cosFort, M.text)
-    Tx(t("Tria una ROM de Game Boy o NES: si ja té driver, t'ho diu; si no, l'analitzador en pot buscar un (experimental). Només una alhora."), Tipus.petit, M.tenu, linies = 4)
-    Tx(t("També una imatge de PlayStation (.bin, .iso o .cue): s'hi busca la música XA i de CD àudio. Cal «Accés a tots els fitxers»."), Tipus.petit, M.tenu, linies = 3)
     if (f != null) {
         tic
         val seg = f.ms / 1000; val lim = f.limitMs / 1000

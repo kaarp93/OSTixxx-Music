@@ -81,6 +81,7 @@ fun Config(tanca: () -> Unit, triaFitxers: () -> Unit, triaCarpeta: () -> Unit, 
                         item { Xip(t("Importa drivers"), false, CamiIcones.DESCARREGA) { triaDrivers() } }
                     }
                     BlocCarrega(ctx)          // [bloc de càrrega] accés a tots els fitxers, revisa les carpetes, refer biblioteca, mode antic
+                    BlocProvaCompat(ctx)          // només el botó «Importa una ROM per analitzar» (amb el progrés i «Cancel·la» mentre n'hi ha una en curs)
                     if (RadioDades.ocults.isNotEmpty()) BotoTonal(t("Mostra les ocultes"), CamiIcones.AMAGA, Modifier.fillMaxWidth()) { RadioDades.ocults.clear(); RadioDades.desa(); App.versio++ }
                     var f1 by remember { mutableStateOf(cat.gbdsmixxx.SnesSpc.fixF1) }
                     FilaInterruptor(t("SNES: ports a l'arrencada (fix \$F1)"), f1) { v -> f1 = v; cat.gbdsmixxx.SnesSpc.fixF1 = v; App.env.putInt("snes_f1_fix", if (v) 1 else 0) }
