@@ -38,10 +38,18 @@ Each game is recognized by its CRC32 and ROM size. The app includes 110 automati
 Roughly half of the games on the supported platforms work, with varying degrees of accuracy. If you want to request games, go ahead.
 
 **Testing:** the app has been tested on a phone running Android 16, including with Android Auto.
+Tested on a second device with Android 9 and a third one with Android 13 with success, although Android 9 struggles a bit with some synths.
 
 **What hasn't been verified:**
 - Experimental games and new drivers haven't all been listened to.
 - Other devices and other Android versions.
+
+## Known issues
+
+Sound doesn't stop when another app starts or when calling.
+PS1 doesn't have visuals support.
+Slight battery overconsumption might happen in some devices.
+HyperOS devices sometimes kill the whole app, battery saver settings per app should be on no optimization on such devices.
 
 ## Open source and credits
 **MIT** license (`LICENSE` file). The sound engines were written based on open disassembly and reimplementation projects, each with its own license. Optional data (cover art and genres) comes from libretro (CC BY-SA 4.0). The app font is Work Sans (SIL Open Font License 1.1, `OFL-WorkSans.txt` file). Concert mode graphics (`concert/herois.png`, `concert/enemics.png`) are from ImmoHub, by Kaarp93, GPL license.
