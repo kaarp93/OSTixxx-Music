@@ -1,50 +1,50 @@
 # OSTixxx Music
 
-> **Nota sobre l'ús d'IA.** Aquest projecte s'ha desenvolupat majoritàriament amb ajuda d'IA i amb la comprovació de Kaarp93. Podeu fer-ne el que vulgueu, també refer-lo sense IA. Si algú té problemes amb l'ús d'IA en aquest projecte, que ho faci saber.
+> **Note on AI usage.** This project was developed largely with AI assistance and verified by Kaarp93. You can do whatever you want with it, including rewriting it without AI. If anyone has issues with AI usage in this project, let it be known.
 
-**OSTixxx Music** és un reproductor de música de videojocs que sintetitza cada tema en directe a partir de les ROM que tu mateix importes. L'app no inclou cap cançó gravada: llegeix la partitura i els instruments de la ROM (o n'executa el codi de so original) i els reprodueix com ho faria la consola.
+**OSTixxx Music** is a video game music player that synthesizes each track live from the ROMs you import yourself. The app does not include any pre-recorded songs: it reads the score and instruments from the ROM (or runs its original sound code) and plays them back just as the console would.
 
-## Descàrrega
-Cada release publica una APK signada, `ostixxx-music-<versió>.apk`. Una APK nova s'instal·la per sobre de l'anterior. Requisits: Android 8.0 (API 26) o superior; pantalla vertical.
+## Download
+Each release publishes a signed APK, `ostixxx-music-<version>.apk`. A new APK installs over the previous one. Requirements: Android 8.0 (API 26) or higher; portrait screen.
 
-## Contingut
-Aquest projecte **no conté cap ROM, cap partida desada ni cap fitxer de Nintendo ni d'altres empreses.** L'app llegeix les ROM que importes al teu dispositiu; cal ser-ne propietari legítim.
+## Content
+This project **does not contain any ROMs, save files, or files from Nintendo or other companies.** The app reads the ROMs you import onto your device; you must be their legitimate owner.
 
-## Consoles i formats
-| Plataforma | Què fa l'app |
+## Consoles and formats
+| Platform | What the app does |
 |---|---|
-| **GBA** | Motor m4a/MP2K: instruments, bancs de Game Boy integrats, envolupants, reverb i efectes. Opció «so original 100 %» per al mesclador de la consola. |
-| **Nintendo DS** | SDAT: SSEQ, SBNK, SWAR i *streams* STRM; jocs amb la música repartida en diversos SDAT. |
-| **Game Boy / Game Boy Color** | CPU LR35902 i APU de 4 canals emulades; s'executa el codi de so original del joc. Motors propis de Pokémon Vermell/Blau/Groc, Cristall i Pokémon TCG 1 i 2. |
-| **NES** | CPU 6502 i APU 2A03, més VRC6; mappers 0, 1, 2, 4 i 7; fitxers `.nsf`. |
-| **SNES** | SPC700 i DSP; fitxers `.spc` i ROM amb drivers. |
-| **PlayStation** (experimental) | Imatges `.cue`/`.bin` o `.iso`: música XA i pistes de CD àudio, llegides d'on són. |
-| **Altres fitxers** | `.gbs`, `.nsf`, `.vgm`/`.vgz` i `.spc`. |
+| **GBA** | m4a/MP2K engine: instruments, built-in Game Boy banks, envelopes, reverb, and effects. "100% original sound" option for the console's mixer. |
+| **Nintendo DS** | SDAT: SSEQ, SBNK, SWAR, and STRM *streams*; games with music split across multiple SDATs. |
+| **Game Boy / Game Boy Color** | Emulated LR35902 CPU and 4-channel APU; executes the game's original sound code. Dedicated engines for Pokémon Red/Blue/Yellow, Crystal, and Pokémon TCG 1 and 2. |
+| **NES** | 6502 CPU and 2A03 APU, plus VRC6; mappers 0, 1, 2, 4, and 7; `.nsf` files. |
+| **SNES** | SPC700 and DSP; `.spc` files and ROMs with drivers. |
+| **PlayStation** (experimental) | `.cue`/`.bin` or `.iso` images: XA music and CD audio tracks, read directly from where they are. |
+| **Other files** | `.gbs`, `.nsf`, `.vgm`/`.vgz`, and `.spc`. |
 
-Cada joc es reconeix pel CRC32 i la mida de la ROM. L'app inclou 110 drivers automàtics i 363 d'experimentals (GB/GBC, NES i SNES); els drivers es poden importar i exportar. Els jocs que encara no s'han escoltat es marquen com a experimentals (✓/✗ per àlbum).
+Each game is recognized by its CRC32 and ROM size. The app includes 110 automatic drivers and 363 experimental ones (GB/GBC, NES, and SNES); drivers can be imported and exported. Games that haven't been listened to yet are marked as experimental (✓/✗ per album).
 
-## Funcions
-- **Biblioteca** per consola, en ordre alfabètic, amb portades; llistes de reproducció i llistes automàtiques (saga, empresa, gènere, consola, dècada, més reproduïdes).
-- **Reproductor:** aleatori, bucles, canals silenciables o en solo, mini reproductor, notificació i controls multimèdia.
-- **Mode concert** a pantalla completa, amb 17 visualitzacions.
-- **Mode comparació** de cançons.
-- **Efectes:** EQ de 10 bandes, reverb, chorus, mono/amplada/balanç i limitador, recordats per consola.
-- **Etiquetes i catàleg:** cada pista pot ser Cançó, Sfx, Jingle o Descarta, amb nom i ordre propis.
-- **Còpia de seguretat** `.ostx` de tota la llibreria.
-- **Dades opcionals de libretro** (portades i metadades), només si les actives.
-- **Idiomes:** català, anglès i castellà.
+## Features
+- **Library** by console, in alphabetical order, with cover art; playlists and smart playlists (franchise, company, genre, console, decade, most played).
+- **Player:** shuffle, loops, mute or solo channels, mini player, notification, and media controls.
+- **Concert mode** in full screen, with 17 visualizations.
+- **Comparison mode** for songs.
+- **Effects:** 10-band EQ, reverb, chorus, mono/width/balance, and limiter, remembered per console.
+- **Tags and catalog:** each track can be Song, SFX, Jingle, or Discard, with custom name and order.
+- **Backup** `.ostx` of the entire library.
+- **Optional libretro data** (cover art and metadata), only if you enable it.
+- **Languages:** Catalan, English, and Spanish.
 
-## Estat
-Aproximadament la meitat dels jocs de les plataformes suportades funcionen, amb més o menys encert. Si voleu demanar jocs, endavant.
+## Status
+Roughly half of the games on the supported platforms work, with varying degrees of accuracy. If you want to request games, go ahead.
 
-**Proves:** l'app s'ha provat en un mòbil amb Android 16, també amb Android Auto.
+**Testing:** the app has been tested on a phone running Android 16, including with Android Auto.
 
-**Què no s'ha pogut comprovar:**
-- Els jocs experimentals i els drivers nous no s'han escoltat tots.
-- Altres dispositius i altres versions d'Android.
+**What hasn't been verified:**
+- Experimental games and new drivers haven't all been listened to.
+- Other devices and other Android versions.
 
-## Codi obert i crèdits
-Llicència **MIT** (fitxer `LICENSE`). Els motors de so s'han escrit a partir de projectes oberts de desassemblatge i reimplementació, cadascun amb la seva llicència. Les dades opcionals (portades i gèneres) vénen de libretro (CC BY-SA 4.0). La font de l'app és Work Sans (SIL Open Font License 1.1, fitxer `OFL-WorkSans.txt`). Els gràfics del mode concert (`concert/herois.png`, `concert/enemics.png`) són d'ImmoHub, de Kaarp93, llicència GPL.
+## Open source and credits
+**MIT** license (`LICENSE` file). The sound engines were written based on open disassembly and reimplementation projects, each with its own license. Optional data (cover art and genres) comes from libretro (CC BY-SA 4.0). The app font is Work Sans (SIL Open Font License 1.1, `OFL-WorkSans.txt` file). Concert mode graphics (`concert/herois.png`, `concert/enemics.png`) are from ImmoHub, by Kaarp93, GPL license.
 
-## Contribuir
-Els comentaris, els errors i les ROM que no sonen són benvinguts.
+## Contributing
+Feedback, bugs, and ROMs that don't play are welcome.
